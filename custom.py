@@ -14,11 +14,13 @@ def format_xlsx(input_file: str, sheet_name: str, operation: str, value: any, **
 
 def reformat_xlsx(file_name: str, dest_file_name: str):
     workbook = xl.load_workbook(file_name)
-    sheet = workbook['expense']
-    sheet.column_dimensions['A'].width = 15
-    sheet.column_dimensions['C'].width = 20
-    sheet.column_dimensions['D'].width = 40
-    sheet.column_dimensions['G'].width = 15
+    sheet_names = ['expense', 'income']
+    for sheet_name in sheet_names:
+        sheet = workbook[sheet_name]
+        sheet.column_dimensions['A'].width = 15
+        sheet.column_dimensions['C'].width = 20
+        sheet.column_dimensions['D'].width = 40
+        sheet.column_dimensions['G'].width = 15
     workbook.save(filename=dest_file_name)
 
 
