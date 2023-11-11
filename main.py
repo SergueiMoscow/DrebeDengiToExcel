@@ -1,11 +1,17 @@
 import os
 import shutil
-
 from dotenv import load_dotenv
-
 from custom import reformat_xlsx, transform_excel_column_to_num
-from os_func import get_download_folder, get_files_re, contains_file, get_files, unzip_file, create_temp_dir, \
-    get_basename_without_extension, open_file, get_max_filename
+from os_func import (
+    get_download_folder,
+    contains_file,
+    get_files,
+    unzip_file,
+    create_temp_dir,
+    get_basename_without_extension,
+    open_file,
+    get_max_filename
+)
 from xls_func import import_csv_to_xlsx, get_list_name_from_file_name, replace_values_from_another_sheet
 
 load_dotenv()
@@ -37,8 +43,6 @@ if __name__ == '__main__':
     replace_values_from_another_sheet(xlsx_file, 'income', '№ Категории', 'income_category', 'id', 'Название')
     transform_excel_column_to_num(xlsx_file, 'expense', 'Сумма')
     transform_excel_column_to_num(xlsx_file, 'income', 'Сумма')
-    # set_auto_filter(xlsx_file, 'expense')
     reformat_xlsx(xlsx_file, OUTPUT_FILE)
     shutil.rmtree(tmp_dir)
     open_file(OUTPUT_FILE)
-
